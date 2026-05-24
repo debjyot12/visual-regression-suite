@@ -1,0 +1,44 @@
+name: Visual Regression Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * *'   # runs daily at 2 AM UTC
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Run visual regression tests
+        run: pytest --tb=short -v
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-report
+          path: reports/
+
+      - name: Upload diff images
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diff-images
+          path: diffs/
