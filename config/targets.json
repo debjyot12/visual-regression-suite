@@ -1,22 +1,22 @@
 {
   "targets": [
     {
-      "name": "tmdb_home",
-      "url": "https://www.themoviedb.org/",
-      "description": "TMDB Homepage"
-    },
-    {
-      "name": "tmdb_movies",
-      "url": "https://www.themoviedb.org/movie",
-      "description": "TMDB Movies Page"
-    },
-    {
       "name": "wikipedia_home",
       "url": "https://www.wikipedia.org/",
       "description": "Wikipedia Homepage"
+    },
+    {
+      "name": "books_catalogue",
+      "url": "https://books.toscrape.com/",
+      "description": "Books to Scrape - static catalogue site"
+    },
+    {
+      "name": "example_dot_com",
+      "url": "https://example.com/",
+      "description": "Example.com - completely static"
     }
   ],
-  "threshold": 0.10,
+  "threshold": 0.05,
   "viewport": {
     "width": 1280,
     "height": 720
